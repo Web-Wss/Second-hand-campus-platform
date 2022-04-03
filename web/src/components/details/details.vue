@@ -27,6 +27,7 @@
           <b>商品名称：</b
           >我是商品名称我是商品名称我是商品名称我是商品名称我是商品名称我是商品名称
         </div>
+        <div class="price"><b>发布时间：</b>2022-4-1</div>
         <div class="price"><b>商品价格：</b>￥50.00</div>
         <div class="addCart">
           <el-button @click="handleLogin()" class="login-btn" type="success"
@@ -35,7 +36,10 @@
         </div>
         <div class="lxmj">
           <el-button @click="handleLogin()" class="login-btn" type="primary"
-            >联系卖家</el-button
+            >联系卖家手机</el-button
+          >
+          <el-button @click="handleLogin()" class="login-btn" type="primary"
+            >联系卖家微信</el-button
           >
         </div>
         <div class="spms">

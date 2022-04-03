@@ -69,7 +69,7 @@ export default {
 
 <style scoped>
 .active {
-  background-color: aqua;
+  background-color: rgb(58, 195, 140);
 }
 .sort_nav {
   margin-top: 10px;

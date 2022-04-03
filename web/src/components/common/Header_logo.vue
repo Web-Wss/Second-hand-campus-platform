@@ -15,7 +15,7 @@
           <li @click="handleSq()">二手社区</li>
         </ul>
       </div>
-      <div class="person">
+      <div class="person" @click="handlePerson()">
         <div class="img">
           <img src="https://cn.vuejs.org/images/logo.svg" alt="" />
         </div>
@@ -37,10 +37,13 @@ export default {
       this.$router.push({ path: "market" });
     },
     handleXq() {
-      alert("此模块正在开发中...");
+      alert("此模块正在开发中，敬请期待...");
     },
     handleSq() {
-      alert("此模块正在开发中...");
+      alert("此模块正在开发中，敬请期待...");
+    },
+    handlePerson() {
+      this.$router.push({ path: "personal" });
     }
   }
 };

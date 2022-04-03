@@ -7,6 +7,11 @@ import Register from "@/components/register/Register.vue";
 import Market from "@/components/market/market.vue";
 import Details from "@/components/details/details.vue";
 import Personal from "@/components/personal/personal.vue";
+import Me from "@/components/personal/me.vue";
+import AddGoods from "@/components/personal/addGoods.vue";
+import GlGoods from "@/components/personal/glGoods.vue";
+import Cart from "@/components/personal/cart.vue";
+import Ddgl from "@/components/personal/ddgl.vue";
 
 Vue.use(Router);
 
@@ -41,7 +46,34 @@ export default new Router({
     {
       path: "/personal",
       name: "Personal",
-      component: Personal
+      component: Personal,
+      children: [
+        {
+          path: "/me",
+          name: "/Me",
+          component: Me
+        },
+        {
+          path: "/addGoods",
+          name: "/AddGoods",
+          component: AddGoods
+        },
+        {
+          path: "/glGoods",
+          name: "/GlGoods",
+          component: GlGoods
+        },
+        {
+          path: "/cart",
+          name: "/Cart",
+          component: Cart
+        },
+        {
+          path: "/ddgl",
+          name: "/Ddgl",
+          component: Ddgl
+        }
+      ]
     }
   ]
 });

@@ -26,11 +26,16 @@
     </div>
     <!-- 交易流程 -->
     <el-dialog title="交易流程" :visible.sync="dialogJylc">
-      交易流程
+      <ul>
+        <li>1、注册账号</li>
+      </ul>
     </el-dialog>
     <!-- 关于平台 -->
     <el-dialog title="关于平台" :visible.sync="dialogGypt">
-      交易流程
+      看看网于2022年4月15日正式上线。 <br /><br />看看网开发的原由：
+      <ul>
+        <li>现有的“校园二手群”检索商品很繁琐</li>
+      </ul>
     </el-dialog>
   </div>
 </template>

@@ -8,12 +8,21 @@
     >
       <h2>用户注册</h2>
       <el-form-item label="用户名（建议学号注册）">
-        <el-input v-model="formdata.username"></el-input>
+        <el-input v-model="formdata.user_username"></el-input>
       </el-form-item>
       <el-form-item label="密  码">
-        <el-input type="password" v-model="formdata.password"></el-input>
+        <el-input type="password" v-model="formdata.user_password"></el-input>
       </el-form-item>
-      <el-button @click="handleLogin()" class="login-btn" type="primary"
+      <el-form-item label="昵 称">
+        <el-input v-model="formdata.user_nickname"></el-input>
+      </el-form-item>
+      <el-form-item label="手 机">
+        <el-input v-model="formdata.user_phone"></el-input>
+      </el-form-item>
+      <el-form-item label="Q Q">
+        <el-input v-model="formdata.user_qq"></el-input>
+      </el-form-item>
+      <el-button @click="handleRegister()" class="login-btn" type="primary"
         >注册</el-button
       >
     </el-form>
@@ -25,21 +34,25 @@ export default {
   data() {
     return {
       formdata: {
-        username: "",
-        password: ""
+        user_username: "",
+        user_password: "",
+        user_nickname: "",
+        user_phone: "",
+        user_qq: ""
       }
     };
   },
   methods: {
-    // 登录请求
-    async handleLogin() {
+    // 注册请求
+    async handleRegister() {
       // 希望让异步操作的代码，看起来像同步代码
       const res = await this.$http.post(
-        `/LoginServlet?username=${this.formdata.username}&password=${this.formdata.password}`
+        `/RegisterServlet?user_username=${this.formdata.user_username}&user_password=${this.formdata.user_password}&user_nickname=${this.formdata.user_nickname}&user_phone=${this.formdata.user_phone}&user_qq=${this.formdata.user_qq}`
       );
       console.log(res);
-      if (res.data == "200") {
-        this.$router.push({ name: "home" });
+      if (res.status == "200") {
+        // this.$router.push({ name: "home" });
+        alert("注册成功!");
       }
       // const {
       //   data,

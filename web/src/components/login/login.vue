@@ -1,25 +1,27 @@
 <template>
-  <div class="login-wrap">
-    <el-form
-      class="login-form"
-      label-position="top"
-      label-width="80px"
-      :model="formdata"
-    >
-      <h2>用户登录</h2>
-      <el-form-item label="用户名">
-        <el-input v-model="formdata.username"></el-input>
-      </el-form-item>
-      <el-form-item label="密  码">
-        <el-input type="password" v-model="formdata.password"></el-input>
-      </el-form-item>
-      <el-button @click="handleLogin()" class="login-btn" type="primary"
-        >登录</el-button
+  <div>
+    <div class="login-wrap">
+      <el-form
+        class="login-form"
+        label-position="top"
+        label-width="80px"
+        :model="formdata"
       >
-      <el-button @click="handleRegister()" class="login-btn" type="success"
-        >注册</el-button
-      >
-    </el-form>
+        <h2>用户登录</h2>
+        <el-form-item label="用户名">
+          <el-input v-model="formdata.username"></el-input>
+        </el-form-item>
+        <el-form-item label="密  码">
+          <el-input type="password" v-model="formdata.password"></el-input>
+        </el-form-item>
+        <el-button @click="handleLogin()" class="login-btn" type="primary"
+          >登录</el-button
+        >
+        <el-button @click="handleRegister()" class="login-btn" type="success"
+          >注册</el-button
+        >
+      </el-form>
+    </div>
   </div>
 </template>
 
