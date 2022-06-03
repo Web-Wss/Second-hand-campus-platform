@@ -4,7 +4,7 @@
       <div class="logo">
         <img
           @click="handleHome()"
-          src="https://s02.mifile.cn/assets/static/image/logo-mi2.png"
+          src="https://s1.ax1x.com/2022/03/16/qpRzGT.jpg"
           alt=""
         />
       </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="person" @click="handlePerson()">
         <div class="img">
-          <img src="https://cn.vuejs.org/images/logo.svg" alt="" />
+          <img alt="" :src="user_img1" />
         </div>
         <div class="title">个人中心</div>
       </div>
@@ -27,7 +27,28 @@
 
 <script>
 export default {
-  name: "Header_logo",
+  data() {
+    return {
+      user_img: ""
+    };
+  },
+  computed: {
+    user_img1() {
+      console.log(this.user_img);
+      if (this.user_img) {
+        return this.user_img;
+      } else {
+        return "https://s1.ax1x.com/2022/03/16/qpRzGT.jpg";
+      }
+    }
+  },
+  created() {
+    if (localStorage.getItem("user_img")) {
+      this.user_img = localStorage.getItem("user_img");
+    } else {
+      this.user_usernam = "";
+    }
+  },
   methods: {
     handleHome() {
       this.$router.push({ path: "home" });
@@ -43,7 +64,7 @@ export default {
       alert("此模块正在开发中，敬请期待...");
     },
     handlePerson() {
-      this.$router.push({ path: "personal" });
+      this.$router.push({ path: "me" });
     }
   }
 };
@@ -98,6 +119,7 @@ export default {
 }
 
 .person {
+  cursor: pointer;
   float: right;
   width: 60px;
   height: 100px;

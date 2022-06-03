@@ -10,22 +10,27 @@
       <div class="main_nav">
         <span>商品分类</span>
         <ul>
-          <li>女生服装</li>
-          <li>男生服装</li>
-          <li>美妆护肤</li>
-          <li>手机数码</li>
-          <li>茶酒美食</li>
-          <li>珠宝饰品</li>
-          <li>图书文具</li>
-          <li>体育用具</li>
+          <li
+            v-for="(item, i) in goodsSort"
+            :key="i"
+            @click="ToMarket(item.sort_id)"
+          >
+            {{ item.sort_name }}
+          </li>
         </ul>
       </div>
       <div class="main_swiper">
         <div class="swiper_show">
           <template>
             <el-carousel :interval="5000" height="420px">
-              <el-carousel-item v-for="item in swiperList" :key="item.id">
-                <img :src="item.src" alt="" width="930px" height="420px" />
+              <el-carousel-item v-for="item in goodGoods" :key="item.id">
+                <img
+                  :src="item.goods_img"
+                  alt=""
+                  width="930px"
+                  height="420px"
+                  @click="imgToDetail(item.goods_id)"
+                />
               </el-carousel-item>
             </el-carousel>
           </template>
@@ -47,16 +52,18 @@
       <span>—— —— —— —— —— 好物抢先购 —— —— —— —— ——</span>
       <div class="goodGoods_list">
         <ul>
-          <li v-for="item in 10" :key="item">
-            <img
-              src="https://img1.baidu.com/it/u=1172381108,1718486977&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889"
-              alt=""
-            />
-            <div class="name">我是名字</div>
+          <li
+            v-for="(item, i) in goodGoods"
+            :key="i"
+            @click="ToDetail(item.goods_id)"
+          >
+            <img :src="item.goods_img" />
+            <div class="name">{{ item.goods_name }}</div>
           </li>
         </ul>
       </div>
     </div>
+
     <!-- 尾部 -->
     <Footer></Footer>
   </div>
@@ -76,6 +83,20 @@ export default {
   },
   data() {
     return {
+      // 好物列表
+      goodGoods: [],
+      // 分类列表
+      goodsSort: [
+        { sort_id: 1, sort_name: "女士服装" },
+        { sort_id: 2, sort_name: "男士服装" },
+        { sort_id: 3, sort_name: "美妆护肤" },
+        { sort_id: 4, sort_name: "手机数码" },
+        { sort_id: 5, sort_name: "食品饮料" },
+        { sort_id: 6, sort_name: "珠宝饰品" },
+        { sort_id: 7, sort_name: "图书文具" },
+        { sort_id: 8, sort_name: "体育用品" }
+      ],
+      // 轮播图列表
       swiperList: [
         {
           id: 1,
@@ -99,6 +120,39 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    // 获取分类
+    this.getGoodsSort();
+    // 获取好物列表
+    this.getGoodGoods();
+  },
+  methods: {
+    ToMarket(sort_id) {
+      console.log(sort_id);
+      this.$router.push({ name: "Market", params: { sort_id: sort_id } });
+    },
+    // 跳转到商品详情页面
+    ToDetail(goods_id) {
+      console.log(goods_id);
+      this.$router.push({ name: "Details", params: { goods_id: goods_id } });
+    },
+    // 获取好物列表
+    async getGoodGoods() {
+      const res = await this.$http.get("/GoodsGoodsServlet");
+      // console.log("goodgoods:", res);
+      this.goodGoods = res.data;
+      console.log(res);
+    },
+    // 获取分类列表
+    async getGoodsSort() {
+      const res = await this.$http.post("/GoodsSortServlet");
+      this.goodsSort = res.data;
+    },
+
+    imgToDetail(goods_id) {
+      console.log(goods_id);
+    }
   }
 };
 </script>
@@ -216,6 +270,7 @@ export default {
   width: 1200px;
 }
 .goodGoods .goodGoods_list ul li {
+  cursor: pointer;
   top: 0;
   list-style: none;
   margin: 10px 20px;

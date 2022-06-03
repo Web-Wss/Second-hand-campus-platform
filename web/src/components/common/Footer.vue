@@ -1,7 +1,9 @@
 <template>
   <div class="footer_box">
     <div class="footer_small">
-      我是尾部内容
+      <div>
+        技术支持：21软件工程----------WSS
+      </div>
     </div>
   </div>
 </template>
@@ -14,17 +16,19 @@ export default {
 
 <style scoped>
 .footer_box {
+  /* position: fixed; */
+  /* bottom: 0; */
   width: 100%;
-  height: 100px;
+  height: 60px;
   /* background-color: antiquewhite; */
 }
 .footer_small {
-  background-color: rgb(65, 161, 97);
-  border-radius: 15px;
+  background-color: #f9f9f9;
+  /* border-radius: 15px; */
   text-align: center;
-  line-height: 100px;
+  line-height: 60px;
   margin: 0 auto;
-  width: 1200px;
-  height: 100px;
+  width: 100%;
+  height: 60px;
 }
 </style>

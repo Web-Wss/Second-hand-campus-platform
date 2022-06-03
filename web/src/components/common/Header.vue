@@ -8,7 +8,10 @@
       </div>
       <div class="small_right">
         <ul>
-          <li @click="handleLoginRegistere()">请登录 / 注册</li>
+          <li v-if="user_nickname == undefined" @click="handleLoginRegistere()">
+            请登录 / 注册
+          </li>
+          <li v-else>{{ user_nickname }}</li>
           <li>小程序</li>
 
           <li @click="handleJylc()">交易流程</li>
@@ -45,9 +48,13 @@ export default {
   name: "Header",
   data() {
     return {
+      user_nickname: "",
       dialogJylc: false,
       dialogGypt: false
     };
+  },
+  created() {
+    this.user_nickname = localStorage.getItem("user_nickname");
   },
   methods: {
     handleLoginRegistere() {
@@ -93,7 +100,7 @@ export default {
 
 .small_right {
   float: right;
-  width: 360px;
+  width: 420px;
   height: 35px;
   font-size: 12px;
   color: #6c6c6c;
@@ -107,7 +114,9 @@ export default {
   width: 90px;
   list-style: none;
 }
+
 .small_right ul li:nth-child(1) {
+  width: 150px;
   color: red;
 }
 /* .small_right ul li:nth-child(2):hover {
@@ -119,7 +128,7 @@ li.logo {
   display: none;
   position: relative;
   top: 5px;
-  left: 120px;
+  left: 180px;
 }
 .small_right ul li:nth-child(2):hover + li + li + li {
   transition: all 0.2s linear;

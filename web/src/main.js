@@ -3,6 +3,7 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
+import { v4 as uuidv4 } from "uuid";
 
 // 引入elementUI
 import ElementUI from "element-ui";
@@ -15,6 +16,7 @@ import MyHttpServer from "@/plugins/http";
 Vue.use(ElementUI);
 // 使用MyHttpServer插件
 Vue.use(MyHttpServer);
+Vue.use(uuidv4);
 
 Vue.config.productionTip = false;
 

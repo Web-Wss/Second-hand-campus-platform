@@ -1,13 +1,38 @@
 <template>
   <div class="search">
     <div class="search_input">
-      <input type="text" value="" placeholder="请输入要搜索的商品，按回车键" />
+      <input
+        type="text"
+        v-model="searchvalue"
+        value=""
+        placeholder="请输入要搜索的商品，按回车键"
+        @keydown.enter="btn"
+      />
     </div>
+    <!-- <button @click="btn">查询</button> -->
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      searchvalue: ""
+    };
+  },
+  created() {},
+  methods: {
+    // 去查询页面
+    // gotoquery() {},
+    btn() {
+      this.$router.push({
+        name: "Query",
+        params: { searchvalue: this.searchvalue }
+      });
+      this.$emit("checkshow", this.searchvalue);
+    }
+  }
+};
 </script>
 
 <style scoped>
